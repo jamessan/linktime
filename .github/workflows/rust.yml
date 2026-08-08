@@ -39,6 +39,7 @@ jobs:
               $match:
                 "this.job == 'wasm'": "wasm32-unknown-unknown,wasm32-wasip1,wasm32-wasip2"
                 "this.label == 'linux-musl'": "x86_64-unknown-linux-musl"
+                "this.label == 'linux-32bit'": "i686-unknown-linux-gnu"
             rust-components:
               $match:
                 "this.job == 'miri'": "miri,rust-src"
@@ -53,6 +54,10 @@ jobs:
                   ubuntu-slim:
                     job: [lint, sanitize]
                     target: x86_64-unknown-linux-gnu
+              linux-32bit:
+                os: ubuntu-latest
+                job: [build, lint, test]
+                target: i686-unknown-linux-gnu
               linux-musl:
                 os: ubuntu-latest
                 job: [build, lint, test]
