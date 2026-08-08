@@ -119,6 +119,10 @@ jobs:
         restore-keys: |
           ${{ env.CACHE_KEY }}-${{ runner.os }}-cargo-${{ matrix.rust-toolchain }}-
      
+    - name: Install gcc-multilib
+      if ${{ matrix.label == 'linux-32bit' }}
+      run: sudo apt --update install gcc-multilib-i686
+
     - name: Run ${{ matrix.job }}
       shell: bash
       env:
