@@ -121,7 +121,7 @@ jobs:
      
     - name: Install gcc-multilib
       if: ${{ matrix.label == 'linux-32bit' }}
-      run: sudo apt --update install gcc-multilib-i686
+      run: sudo apt --update install gcc-multilib-i686-linux-gnu
 
     - name: Run ${{ matrix.job }}
       shell: bash
